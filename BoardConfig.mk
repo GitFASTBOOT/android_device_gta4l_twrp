@@ -8,6 +8,8 @@
 DEVICE_PATH := device/samsung/gta4l
 
 ALLOW_MISSING_DEPENDENCIES := true
+# PRODUCT_COPY_FILES directives.
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 
 # Architecture
 TARGET_ARCH := arm64
@@ -115,6 +117,7 @@ TW_SCREEN_BLANK_ON_BOOT := true
 TW_DEFAULT_BRIGHTNESS := 255 #from overlays 
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
 
 #bootloader
 TW_NO_REBOOT_BOOTLOADER := true
@@ -125,9 +128,15 @@ TWRP_EVENT_LOGGING := true
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 
-#bettery
+#Battey [ this is a peace of shit made by me :) ]
 TW_BATTERY_PATH := /sys/class/power_supply/battery
 TW_BATTERY_CAPACITY_PATH := $(TW_BATTERY_PATH)/capacity
+
+BOARD_POWER_PROFILE := high_performance
+
+check_battery_capacity:
+    @echo "bettry is: $(shell cat $(TW_BATTERY_CAPACITY_PATH))%"
+
 
 #storage
 RECOVERY_SDCARD_ON_DATA := true
