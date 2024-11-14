@@ -132,7 +132,9 @@ TWRP_EVENT_LOGGING := true
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 
-#bettery
+#Battey [ this is a peace of shit made by me :) ]
+TW_BATTERY_PATH := /sys/class/power_supply/battery
+TW_BATTERY_CAPACITY_PATH := $(TW_BATTERY_PATH)/capacity
 BOARD_POWER_PROFILE := high_performance
 
 check_battery_capacity:
