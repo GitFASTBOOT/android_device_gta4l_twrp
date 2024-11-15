@@ -119,6 +119,8 @@ TW_DEFAULT_BRIGHTNESS := 255 #from overlays
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
+TW_INCLUDE_NTFS_3G := true
+TARGET_USES_MKE2FS := true
 
 #bootloader
 TW_NO_REBOOT_BOOTLOADER := true
