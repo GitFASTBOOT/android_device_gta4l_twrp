@@ -37,8 +37,6 @@ on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
 
-
-
 on fs
     install_keyring
 
@@ -106,4 +104,8 @@ on property:vendor.sys.listeners.registered=true
     start keymaster-4-0
     start gatekeeper-1-0
     start servicemanager
+
+on boot
+    start health-hal-2-1
+
 
