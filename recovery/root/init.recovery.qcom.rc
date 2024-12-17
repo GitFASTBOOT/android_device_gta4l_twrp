@@ -30,7 +30,6 @@ on init
     setprop sys.usb.configfs 1
     export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw:/system/lib64/hw
     setprop crypto.ready 1
-    setprop vendor.sys.listeners.registered true
 
 on property:ro.boot.usbcontroller=*
     setprop sys.usb.controller ${ro.boot.usbcontroller}
@@ -94,6 +93,18 @@ service keymaster-4-0 /vendor/bin/android.hardware.keymaster@4.0-service
     disabled
     seclabel u:r:recovery:s0
 
+on property:ro.crypto.state=unsupported
+    stop keymaster-4-0
+    stop gatekeeper-1-0
+
+on property:ro.crypto.state=unencrypted
+    stop keymaster-4-0
+    stop gatekeeper-1-0
+
+on property:twrp.decrypt.done=true
+    stop keymaster-4-0
+    stop gatekeeper-1-0
+
 on property:crypto.ready=0
     stop qseecomd
     stop keymaster-4-0
@@ -102,11 +113,8 @@ on property:crypto.ready=0
 
 on property:crypto.ready=1
     start qseecomd
-
-on property:vendor.sys.listeners.registered=true
     start keymaster-4-0
     start gatekeeper-1-0
-    start servicemanager
 
 on boot
     start health-hal-2-1
