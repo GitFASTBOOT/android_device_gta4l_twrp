@@ -29,6 +29,8 @@ RECOVERY_LIBRARY_SOURCE_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.0
 
+PRODUCT_PACKAGES += android.hardware.keymaster@4.0-impl
+
 # Health Hal
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
